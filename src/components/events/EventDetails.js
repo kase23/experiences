@@ -4,6 +4,7 @@ function EventDetails(props) {
   const id = props.match.params.id;
   return (
     <div className="container section">
+      <br></br>
       <div className="card col">
         <img
           className="card-img-top"
