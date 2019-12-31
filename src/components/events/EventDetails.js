@@ -1,5 +1,7 @@
 import React from "react";
 
+const data = {title:"Event Sample One",details:"This is a sample details for an event",img:"https://i2.wp.com/www.charlotteonthecheap.com/lotc-cms/wp-content/uploads/2013/03/MP900430580.jpg?resize=768%2C510&ssl=1"}
+
 function EventDetails(props) {
   const id = props.match.params.id;
   return (
@@ -8,14 +10,14 @@ function EventDetails(props) {
       <div className="card col">
         <img
           className="card-img-top"
-          src="https://i2.wp.com/www.charlotteonthecheap.com/lotc-cms/wp-content/uploads/2013/03/MP900430580.jpg?resize=768%2C510&ssl=1"
+          src= {data.img}
           alt={"Card image cap"}
         />
 
         <div className="card-body">
-          <h5 className="card-title">Event {id} Details</h5>
+          <h5 className="card-title">{data.title} Details</h5>
           <p className="card-text">
-            Example summary of event Date Time etc etc etx
+            {data.details}
           </p>
           <a href="#" className="btn btn-primary">
             Book
