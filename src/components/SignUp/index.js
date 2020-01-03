@@ -6,7 +6,6 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div className="container wrapper fadeInDown">
-  
     <h1>Sign Up</h1>
     <SignUpForm />
   </div>
@@ -23,7 +22,6 @@ const INITIAL_STATE = {
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
-
     this.state = { ...INITIAL_STATE };
   }
 
@@ -31,24 +29,15 @@ class SignUpFormBase extends Component {
     const { username, email, passwordOne } = this.state;
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne, username)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        this.props.firebase
-          .user(authUser.user.uid)
-          .set({
-            displayName:username,
-            email,
-          })
-          .then(() => {
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(() => {
             this.setState({ ...INITIAL_STATE });
             this.props.history.push(ROUTES.HOME);
           })
           .catch(error => {
             this.setState({ error });
-          });
-      })
-      .catch(error => {
+          }
+      ).catch(error => {
         this.setState({ error });
       });
 

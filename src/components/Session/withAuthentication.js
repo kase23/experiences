@@ -13,9 +13,10 @@ const withAuthentication = Component => {
       };
     }
 
+    unsubscribeFromAuth = null;
     componentDidMount() {
-      this.listener = this.props.firebase.auth.onAuthStateChanged(
-        authUser => {
+      this.unsubscribeFromAuth = this.props.firebase.auth.onAuthStateChanged(authUser =>
+         {
           authUser
             ? this.setState({ authUser })
             : this.setState({ authUser: null });
@@ -24,11 +25,10 @@ const withAuthentication = Component => {
     }
 
     componentWillUnmount() {
-      this.listener();
+      //this.listener();
     }
 
     render() {
-      console.log(this.state.authUser)
       return (
         <AuthUserContext.Provider value={this.state.authUser}>
           <Component {...this.props} />
