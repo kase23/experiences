@@ -1,13 +1,13 @@
 import React from "react";
 import withAuthentication from "../Session/withAuthentication";
-import { AuthUserContext } from '../Session';
+import { AuthUserContext, withAuthorization } from '../Session';
 
 const data = {title:"Event Sample One",details:"This is a sample details for an event",img:"https://i2.wp.com/www.charlotteonthecheap.com/lotc-cms/wp-content/uploads/2013/03/MP900430580.jpg?resize=768%2C510&ssl=1"}
-
 function EventDetails(props) {
+
   const id = props.match.params.id;
   return (
-    <AuthUserContext.Consumer>
+ <div>
       {authUser =>
         authUser ?  (
      <div className="container section">
@@ -29,10 +29,9 @@ function EventDetails(props) {
        </div>
      </div>
    </div>
-    ) : null}
-  </AuthUserContext.Consumer>
+    ) : null}</div>
   );
 }
-//const condition = authUser => !!authUser;
-//withAuthentication(condition)
-export default (EventDetails);
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(EventDetails);

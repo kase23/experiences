@@ -19,6 +19,19 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.firestore();
+
+    this.db.collection("cities").doc("LA").set({
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA"
+  })
+  .then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  });
+  
   }
 
   // *** Auth API ***
@@ -38,11 +51,11 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
-  // *** User API ***
+  // *** Events API ***
+  //events = this.db. 
+  //user = uid => this.db.ref(`users/${uid}`);
 
-  user = uid => this.db.ref(`users/${uid}`);
-
-  users = () => this.db.ref('users');
+  // users = () => this.db.ref('users');
 }
 
 export default Firebase;
